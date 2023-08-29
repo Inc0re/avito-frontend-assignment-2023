@@ -1,7 +1,9 @@
-import { Card, Button, Descriptions, Space, Tag, Divider } from 'antd'
+/* eslint-disable react/prop-types */
+import { Card, Space, Tag, Typography } from 'antd'
 import { DesktopOutlined, QuestionCircleOutlined } from '@ant-design/icons'
 
-const { Meta } = Card
+// const { Meta } = Card
+const { Title, Paragraph } = Typography
 
 export default function GameCard(props) {
   const {
@@ -14,23 +16,38 @@ export default function GameCard(props) {
 
   return (
     <Card
-      style={{ width: 300 }}
+      style={{ margin: '10px' }}
       cover={<img alt={`${title} thumbnail`} src={thumbnail} />}
-      actions={[
-        <Button type='primary' shape='round' size='large' key='open'>
-          About
-        </Button>,
-      ]}
+      // actions={[
+      //   <Button type='primary' shape='round' size='large' key='open'>
+      //     About
+      //   </Button>,
+      // ]}
     >
-      <Meta title={title} description={description} />
-      {/* <Divider/> */}
-      <Space direction='vertical' style={{marginTop:'1em'}}>
-      <Tag icon={<QuestionCircleOutlined />} color='orange'>
-        {genre}
-      </Tag>
-      <Tag icon={<DesktopOutlined />} color='green'>
-        {platform}
-      </Tag>
+      {/* <Meta title={title} description={description} /> */}
+      <Title
+        ellipsis={{ rows: 1, expandable: false, tooltip: description }}
+        level={2}
+        style={{ marginTop: 0 }}
+      >
+        {title}
+      </Title>
+      <Paragraph
+        ellipsis={{ rows: 2, expandable: false, tooltip: description }}
+        style={{ overflow: 'hidden', textOverflow: 'ellipsis', height: '3em' }}
+      >
+        {description}
+      </Paragraph>
+      <Space
+        direction='horizontal'
+        style={{ marginTop: '1em', display: 'block' }}
+      >
+        <Tag icon={<QuestionCircleOutlined />} color='orange'>
+          {genre}
+        </Tag>
+        <Tag icon={<DesktopOutlined />} color='green'>
+          {platform}
+        </Tag>
       </Space>
     </Card>
   )

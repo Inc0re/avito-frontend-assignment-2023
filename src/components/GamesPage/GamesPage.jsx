@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { Layout, Space, Select } from 'antd'
+import { Layout, Space, Select, Row, Col } from 'antd'
 import { GamesContext } from '../../contexts/GamesContext'
 import GameCard from '../GameCard/GameCard'
 
@@ -13,23 +13,30 @@ export default function GamesPage() {
   const games = useContext(GamesContext)
 
   return (
-    <Content style={{ padding: '0 50px' }}>
+    <Content style={{ padding: '0 5%', width: '100%' }}>
       <Space direction='vertical' style={{ width: '100%' }} align='center'>
-      <Space.Compact block>
-        <Select defaultValue='Option1-1'>
-          <Option value='Option1-1'>Option1-1</Option>
-          <Option value='Option1-2'>Option1-2</Option>
-        </Select>
-        <Select defaultValue='Option2-2'>
-          <Option value='Option2-1'>Option2-1</Option>
-          <Option value='Option2-2'>Option2-2</Option>
-        </Select>
-      </Space.Compact>
-      <Space wrap>
-        {games.map(game => (
-          <GameCard key={game.id} {...game} />
-        ))}
-      </Space>
+        <Space.Compact block style={{ width: '100%' }}>
+          <Select mode='multiple' placeholder='Genre' style={{ width: '100%' }}>
+            <Option value='Option1-1'>MOBA</Option>
+            <Option value='Option1-2'>Shooter</Option>
+          </Select>
+          <Select
+            mode='multiple'
+            placeholder='Platform'
+            style={{ width: '100%' }}
+          >
+            <Option value='Option2-1'>PC (Windows)</Option>
+            <Option value='Option2-2'>Android</Option>
+          </Select>
+        </Space.Compact>
+        <Row gutter={[16, 16]} justify='center'>
+          {games &&
+            games.slice(0, 29).map(game => (
+              <Col key={game.id} xs={24} sm={24} md={12} lg={8} xl={6}>
+                <GameCard key={game.id} {...game} />
+              </Col>
+            ))}
+        </Row>
       </Space>
     </Content>
   )
