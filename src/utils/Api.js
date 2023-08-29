@@ -2,7 +2,6 @@ class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl
     this._headers = options.headers
-    this._mode = options.mode
   }
 
   _getJson(res) {
@@ -19,16 +18,15 @@ class Api {
   getGames() {
     return this._request(`${this._baseUrl}/games`, {
       headers: this._headers,
-      mode: this._mode
     })
-
   }
 }
 
 export default new Api({
-  baseUrl: 'https://www.freetogame.com/api',
+  baseUrl: 'https://free-to-play-games-database.p.rapidapi.com/api',
   headers: {
     'Content-Type': 'application/json',
+    'X-RapidAPI-Key': 'ff251e0166msh15bc41b5e3ee4dap12afa3jsn03a4c2f2dece',
+    'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
   },
-  mode: 'no-cors'
 })
