@@ -8,9 +8,28 @@ import api from '../../utils/Api'
 import { GamesContext } from '../../contexts/GamesContext'
 import './App.css'
 
-
 const App = () => {
   const [games, setGames] = useState(null)
+  // const [genres, setGenres] = useState(null)
+  // const [platforms, setPlatforms] = useState(null)
+
+  const genres = []
+  for (let i = 10; i < 36; i++) {
+    const value = i.toString(36) + i
+    genres.push({
+      label: `Long Label: ${value}`,
+      value,
+    })
+  }
+
+  const platforms = []
+  for (let i = 10; i < 36; i++) {
+    const value = i.toString(36) + i
+    platforms.push({
+      label: `Long Label: ${value}`,
+      value,
+    })
+  }
 
   useEffect(() => {
     api
@@ -27,7 +46,10 @@ const App = () => {
           <h1 className='header__text'>Free games</h1>
         </header>
         <Routes>
-          <Route path='/' element={<GamesPage />} />
+          <Route
+            path='/'
+            element={<GamesPage genres={genres} platforms={platforms} />}
+          />
           <Route path='/game' element={<GamePage />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
