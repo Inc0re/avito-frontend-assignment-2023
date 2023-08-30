@@ -3,12 +3,15 @@
   display: grid;
   position: relative;
   width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
   min-height: 100vh;
   grid-template-rows: min-content 1fr min-content;
 }
 
 .header {
-  margin: 10px;
+  width: 90%;
+  margin: 10px auto;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -20,6 +23,8 @@
 }
 
 .footer {
+  width: 90%;
+  text-align: center;
   display: flex;
   justify-content: center;
 }
