@@ -1,8 +1,16 @@
 .games-page {
   display: grid;
   grid-template-rows: min-content 1fr;
-  width: 95%;
+  width: 90%;
   margin: 0 auto;
+}
+
+.games-page__filters {
+}
+
+.games-page__filter {
+  margin: 30px 0;
+  width: 100%;
 }
 
 .games-page__list {
@@ -10,15 +18,19 @@
   list-style-type: none;
   margin: 0;
   display: grid;
+  justify-items: stretch;
   justify-content: center;
-  justify-items: center;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  column-gap: 28px;
-  row-gap: 37px;
+  gap: 30px;
 }
 
-@media screen and (max-width: 425px) {
-  .cards {
-    row-gap: 16px;
+.games-page__no-results {
+  text-align: center;
+  font-size: 20px;
+}
+
+@media screen and (max-width: 650px) {
+  .games-page__list {
+    gap: 16px;
   }
 }
