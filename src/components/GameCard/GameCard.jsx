@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
-import { Card, Space, Tag, Typography } from 'antd'
+import { Link } from 'react-router-dom'
+import { Tooltip, Tag } from 'antd'
 import { DesktopOutlined, QuestionCircleOutlined } from '@ant-design/icons'
-
-// const { Meta } = Card
-const { Title, Paragraph } = Typography
+import './GameCard.css'
 
 export default function GameCard(props) {
   const {
+    id,
     title,
     thumbnail,
     short_description: description,
@@ -15,40 +15,30 @@ export default function GameCard(props) {
   } = props
 
   return (
-    <Card
-      style={{ margin: '10px' }}
-      cover={<img alt={`${title} thumbnail`} src={thumbnail} />}
-      // actions={[
-      //   <Button type='primary' shape='round' size='large' key='open'>
-      //     About
-      //   </Button>,
-      // ]}
-    >
-      {/* <Meta title={title} description={description} /> */}
-      <Title
-        ellipsis={{ rows: 1, expandable: false, tooltip: description }}
-        level={2}
-        style={{ marginTop: 0 }}
-      >
-        {title}
-      </Title>
-      <Paragraph
-        ellipsis={{ rows: 2, expandable: false, tooltip: description }}
-        style={{ overflow: 'hidden', textOverflow: 'ellipsis', height: '3em' }}
-      >
-        {description}
-      </Paragraph>
-      <Space
-        direction='horizontal'
-        style={{ marginTop: '1em', display: 'block' }}
-      >
-        <Tag icon={<QuestionCircleOutlined />} color='orange'>
-          {genre}
-        </Tag>
-        <Tag icon={<DesktopOutlined />} color='green'>
-          {platform}
-        </Tag>
-      </Space>
-    </Card>
+    <li>
+      <Link to={'/games/' + id} className='game-card__overlay'>
+        <div className='game-card'>
+          <img
+            src={thumbnail}
+            alt={`Постер игры ${title}`}
+            className='game-card__thumbnail'
+          />
+          <div className='game-card__body'>
+            <h2 className='game-card__title'>{title}</h2>
+            <Tooltip title={title + ' - ' + description}>
+              <p className='game-card__description'>{description}</p>
+            </Tooltip>
+            <div className='game-card__tags'>
+              <Tag icon={<QuestionCircleOutlined />} color='orange'>
+                {genre}
+              </Tag>
+              <Tag icon={<DesktopOutlined />} color='green'>
+                {platform}
+              </Tag>
+            </div>
+          </div>
+        </div>
+      </Link>
+    </li>
   )
 }

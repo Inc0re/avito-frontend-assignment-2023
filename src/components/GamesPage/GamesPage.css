@@ -1,0 +1,24 @@
+.games-page {
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.games-page__list {
+  padding: 0;
+  list-style-type: none;
+  margin: 0;
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  column-gap: 28px;
+  row-gap: 37px;
+}
+
+@media screen and (max-width: 425px) {
+  .cards {
+    row-gap: 16px;
+  }
+}
