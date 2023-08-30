@@ -1,35 +1,45 @@
+/* eslint-disable react/prop-types */
 import { useContext } from 'react'
 import { Space, Select } from 'antd'
 import { GamesContext } from '../../contexts/GamesContext'
 import GameCard from '../GameCard/GameCard'
 import './GamesPage.css'
 
-const { Option } = Select
-
-export default function GamesPage() {
+export default function GamesPage({ genres, platforms }) {
   const games = useContext(GamesContext)
 
   return (
-    <section className='games-page'>
+    <main className='games-page'>
+      <section className='games-page__filters'>
         <Space.Compact block>
-          <Select mode='multiple' placeholder='Genre'>
-            <Option value='Option1-1'>MOBA</Option>
-            <Option value='Option1-2'>Shooter</Option>
-          </Select>
           <Select
             mode='multiple'
+            maxTagCount='responsive'
+            placeholder='Genre'
+            className='games-page__filter'
+            options={genres}
+          />
+          <Select
+            mode='multiple'
+            maxTagCount='responsive'
             placeholder='Platform'
-          >
-            <Option value='Option2-1'>PC (Windows)</Option>
-            <Option value='Option2-2'>Android</Option>
-          </Select>
+            className='games-page__filter'
+            options={platforms}
+          />
         </Space.Compact>
-        <ul className='games-page__list'>
-          {games &&
-            games.slice(0, 29).map(game => (
-                <GameCard key={game.id} {...game} />
-            ))}
-        </ul>
-    </section>
+      </section>
+      <section>
+        {games ? (
+          <ul className='games-page__list'>
+            {games &&
+              games
+                .slice(0, 29)
+                .map(game => <GameCard key={game.id} {...game} />)}
+          </ul>
+        ) : (
+          <p className='games-page__no-results'>Что-то пошло не так 😢</p>
+        )}
+      </section>
+    </main>
   )
 }

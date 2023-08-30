@@ -5,36 +5,26 @@ import GamePage from '../GamePage/GamePage'
 import NotFound from '../NotFound/NotFound'
 import { useEffect, useState } from 'react'
 import api from '../../utils/Api'
+import { getUniqueArrFromData, getSortedSelectOptions } from '../../utils/functions'
 import { GamesContext } from '../../contexts/GamesContext'
 import './App.css'
 
 const App = () => {
   const [games, setGames] = useState(null)
-  // const [genres, setGenres] = useState(null)
-  // const [platforms, setPlatforms] = useState(null)
-
-  const genres = []
-  for (let i = 10; i < 36; i++) {
-    const value = i.toString(36) + i
-    genres.push({
-      label: `Long Label: ${value}`,
-      value,
-    })
-  }
-
-  const platforms = []
-  for (let i = 10; i < 36; i++) {
-    const value = i.toString(36) + i
-    platforms.push({
-      label: `Long Label: ${value}`,
-      value,
-    })
-  }
+  const [genres, setGenres] = useState(null)
+  const [platforms, setPlatforms] = useState(null)
 
   useEffect(() => {
     api
       .getGames()
-      .then(res => setGames(res))
+      .then(res => {
+        setGames(res)
+        const genresArr = getUniqueArrFromData(res, 'genre')
+        console.log(getSortedSelectOptions(genresArr))
+        const platformsArr = getUniqueArrFromData(res, 'platform')
+        setGenres(getSortedSelectOptions(genresArr))
+        setPlatforms(getSortedSelectOptions(platformsArr))
+      })
       .catch(err => console.log(err))
   }, [])
 
