@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import { SmileTwoTone } from '@ant-design/icons'
 import GamesPage from '../GamesPage/GamesPage'
 import GamePage from '../GamePage/GamePage'
+import NotFound from '../NotFound/NotFound'
 import { useEffect, useState } from 'react'
 import api from '../../utils/Api'
 import { GamesContext } from '../../contexts/GamesContext'
@@ -28,9 +29,12 @@ const App = () => {
         <Routes>
           <Route path='/' element={<GamesPage />} />
           <Route path='/game' element={<GamePage />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
         <footer className='footer'>
-          <p className='footer__text'>Free games ©{new Date().getFullYear()} Created by Daniil Borovov</p>
+          <p className='footer__text'>
+            Free games ©{new Date().getFullYear()} Created by Daniil Borovov
+          </p>
         </footer>
       </div>
     </GamesContext.Provider>
