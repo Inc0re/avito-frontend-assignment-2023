@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Link } from 'react-router-dom'
 import { SmileTwoTone } from '@ant-design/icons'
 import GamesPage from '../GamesPage/GamesPage'
 import GamePage from '../GamePage/GamePage'
@@ -104,8 +104,10 @@ const App = () => {
     <GamesContext.Provider value={filteredGames}>
       <div className='app'>
         <header className='header'>
-          <SmileTwoTone style={{ fontSize: '40px', marginRight: '10px' }} />
-          <h1 className='header__text'>Free games</h1>
+          <Link className='header__link' to='/'>
+            <SmileTwoTone style={{ fontSize: '40px', marginRight: '10px' }} />
+            <h1 className='header__text'>Free games</h1>
+          </Link>
         </header>
         <Routes>
           <Route

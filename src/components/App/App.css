@@ -17,6 +17,12 @@
   align-items: center;
 }
 
+.header__link {
+  display: flex;
+  text-decoration: none;
+  color: #fff;
+}
+
 .header__text {
   margin: 0;
   padding: 0;
