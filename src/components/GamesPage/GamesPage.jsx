@@ -64,7 +64,7 @@ export default function GamesPage({ genres, platforms, pageState, handlers }) {
           <ul className='games-page__list'>
             {games &&
               games
-                .slice(0, 30)
+                // .slice(0, 30)
                 .map(game => <GameCard key={game.id} {...game} />)}
           </ul>
         ) : (
