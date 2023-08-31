@@ -1,9 +1,29 @@
 /* eslint-disable react/prop-types */
 import { useContext } from 'react'
-import { Space, Select } from 'antd'
+import { Space, Select, Dropdown } from 'antd'
+import { DownOutlined } from '@ant-design/icons'
 import { GamesContext } from '../../contexts/GamesContext'
 import GameCard from '../GameCard/GameCard'
 import './GamesPage.css'
+
+const items = [
+  {
+    label: '1st menu item',
+    key: '0',
+  },
+  {
+    label: '2nd menu item',
+    key: '1',
+  },
+  {
+    type: 'divider',
+  },
+  {
+    label: '3rd menu item（disabled）',
+    key: '3',
+    disabled: true,
+  },
+]
 
 export default function GamesPage({ genres, platforms }) {
   const games = useContext(GamesContext)
@@ -27,6 +47,14 @@ export default function GamesPage({ genres, platforms }) {
             options={platforms}
           />
         </Space.Compact>
+        <Dropdown menu={{ items, selectable: true }}>
+          <a href='#' onClick={e => e.preventDefault()}>
+            <Space>
+              Hover me
+              <DownOutlined />
+            </Space>
+          </a>
+        </Dropdown>
       </section>
       <section>
         {games ? (
