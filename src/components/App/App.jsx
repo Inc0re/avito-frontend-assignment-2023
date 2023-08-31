@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Routes, Route, Link } from 'react-router-dom'
 import { SmileTwoTone } from '@ant-design/icons'
 import GamesPage from '../GamesPage/GamesPage'
