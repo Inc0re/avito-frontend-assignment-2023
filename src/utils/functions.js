@@ -28,6 +28,37 @@ function getRuDate(date) {
   return new Date(date).toLocaleDateString('ru-RU', options)
 }
 
-console.log(getRuDate('2020-01-01'))
+function filterByMatch(arr, key, values) {
+  return arr.filter(item => values.includes(item[key]))
+}
 
-export { getUniqueArrFromData, getSortedSelectOptions, getRuDate }
+function sortByTitle(arr, order = 'asc') {
+  return arr.sort((a, b) => {
+    if (order === 'asc') {
+      return a.title.localeCompare(b.title)
+    } else {
+      return b.title.localeCompare(a.title)
+    }
+  })
+}
+
+function sortByDate(arr, key, order = 'asc') {
+  return arr.sort((a, b) => {
+    const dateA = new Date(a[key])
+    const dateB = new Date(b[key])
+    if (order === 'asc') {
+      return dateA - dateB
+    } else {
+      return dateB - dateA
+    }
+  })
+}
+
+export {
+  getUniqueArrFromData,
+  getSortedSelectOptions,
+  getRuDate,
+  filterByMatch,
+  sortByTitle,
+  sortByDate,
+}

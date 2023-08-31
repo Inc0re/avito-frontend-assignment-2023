@@ -24,7 +24,7 @@ const sortOptions = [
   },
 ]
 
-export default function GamesPage({ genres, platforms, pageState }) {
+export default function GamesPage({ genres, platforms, pageState, handlers }) {
   const games = useContext(GamesContext)
 
   return (
@@ -37,6 +37,7 @@ export default function GamesPage({ genres, platforms, pageState }) {
             placeholder='Genre'
             className='games-page__filter'
             options={genres}
+            onChange={handlers.handleGenreChange}
           />
           <Select
             mode='multiple'
@@ -44,12 +45,14 @@ export default function GamesPage({ genres, platforms, pageState }) {
             placeholder='Platform'
             className='games-page__filter'
             options={platforms}
+            onChange={handlers.handlePlatformChange}
           />
         </Space.Compact>
         <Select
           placeholder='Sort by'
           className='games-page__sort'
           options={sortOptions}
+          onChange={handlers.handleSortChange}
         />
       </section>
       <section>
