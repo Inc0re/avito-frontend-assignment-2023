@@ -20,6 +20,12 @@ class Api {
       headers: this._headers,
     })
   }
+
+  getGame(id) {
+    return this._request(`${this._baseUrl}/games/${id}`, {
+      headers: this._headers,
+    })
+  }
 }
 
 export default new Api({
