@@ -2,7 +2,7 @@
 
 Запуск проекта:
 
-1. Скачать репозиторий сервера [https://github.com/Inc0re/express-proxy-server](https://github.com/Inc0re/express-proxy-server) и данный репозиторий
+1. Скачать файлы [репозитория сервера](https://github.com/Inc0re/express-proxy-server) и данный репозиторий
 2. Установить зависимости с помощью `npm i`
 3. Выполнить команду `npm start` сначала в корневой папке сервера, а затем во фронтенде.
 
