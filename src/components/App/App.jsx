@@ -130,7 +130,8 @@ const App = () => {
         </Routes>
         <footer className='footer'>
           <p className='footer__text'>
-            Free games ©{new Date().getFullYear()} Created by Daniil Borovov
+            Free games ©{new Date().getFullYear()} Created by{' '}
+            <a className='footer__link' href='https://github.com/Inc0re'>Daniil Borovov</a>
           </p>
         </footer>
       </div>

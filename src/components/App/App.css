@@ -21,6 +21,11 @@
   display: flex;
   text-decoration: none;
   color: #fff;
+  transition: opacity 0.2s linear;
+}
+
+.header__link:hover {
+  opacity: 0.6;
 }
 
 .header__text {
@@ -38,4 +43,14 @@
 
 .footer__text {
   color: gray;
+}
+
+.footer__link {
+  color: #547bfa;
+  text-decoration: none;
+  transition: opacity 0.2s linear;
+}
+
+.footer__link:hover {
+  opacity: 0.6;
 }
