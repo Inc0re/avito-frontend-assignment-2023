@@ -6,11 +6,19 @@
 }
 
 .games-page__filters {
+  margin: 20px 0;
+  display: grid;
+  grid-template-rows: repeat(2, min-content);
+  gap: 20px;
 }
 
 .games-page__filter {
-  margin: 30px 0;
   width: 100%;
+}
+
+.games-page__sort {
+  justify-self: end;
+  min-width: 145px;
 }
 
 .games-page__list {
@@ -26,11 +34,20 @@
 
 .games-page__no-results {
   text-align: center;
-  font-size: 20px;
+  font-size: 40px;
+}
+
+.games-page__loader {
+  margin: 30px 0;
+  text-align: center;
 }
 
 @media screen and (max-width: 650px) {
   .games-page__list {
     gap: 16px;
+  }
+
+  .games-page__no-results {
+    font-size: 20px;
   }
 }

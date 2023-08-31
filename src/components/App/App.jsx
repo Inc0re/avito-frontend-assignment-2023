@@ -5,11 +5,15 @@ import GamePage from '../GamePage/GamePage'
 import NotFound from '../NotFound/NotFound'
 import { useEffect, useState } from 'react'
 import api from '../../utils/Api'
-import { getUniqueArrFromData, getSortedSelectOptions } from '../../utils/functions'
+import {
+  getUniqueArrFromData,
+  getSortedSelectOptions,
+} from '../../utils/functions'
 import { GamesContext } from '../../contexts/GamesContext'
 import './App.css'
 
 const App = () => {
+  const [pageState, setPageState] = useState('loading')
   const [games, setGames] = useState(null)
   const [genres, setGenres] = useState(null)
   const [platforms, setPlatforms] = useState(null)
@@ -20,12 +24,15 @@ const App = () => {
       .then(res => {
         setGames(res)
         const genresArr = getUniqueArrFromData(res, 'genre')
-        console.log(getSortedSelectOptions(genresArr))
         const platformsArr = getUniqueArrFromData(res, 'platform')
         setGenres(getSortedSelectOptions(genresArr))
         setPlatforms(getSortedSelectOptions(platformsArr))
+        setPageState('loaded')
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        console.log(err)
+        setPageState('error')
+      })
   }, [])
 
   return (
@@ -38,7 +45,7 @@ const App = () => {
         <Routes>
           <Route
             path='/'
-            element={<GamesPage genres={genres} platforms={platforms} />}
+            element={<GamesPage pageState={pageState} genres={genres} platforms={platforms} />}
           />
           <Route path='/game' element={<GamePage />} />
           <Route path='*' element={<NotFound />} />

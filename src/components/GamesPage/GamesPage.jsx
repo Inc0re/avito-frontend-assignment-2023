@@ -1,31 +1,30 @@
 /* eslint-disable react/prop-types */
 import { useContext } from 'react'
-import { Space, Select, Dropdown } from 'antd'
-import { DownOutlined } from '@ant-design/icons'
+import { Space, Select, Spin } from 'antd'
 import { GamesContext } from '../../contexts/GamesContext'
 import GameCard from '../GameCard/GameCard'
 import './GamesPage.css'
 
-const items = [
+const sortOptions = [
   {
-    label: '1st menu item',
-    key: '0',
+    label: 'name (A-Z)',
+    value: 'nameAsc',
   },
   {
-    label: '2nd menu item',
-    key: '1',
+    label: 'name (Z-A)',
+    value: 'nameDesc',
   },
   {
-    type: 'divider',
+    label: 'release (newest)',
+    value: 'releaseDesc',
   },
   {
-    label: '3rd menu item（disabled）',
-    key: '3',
-    disabled: true,
+    label: 'release (oldest)',
+    value: 'releaseAsc',
   },
 ]
 
-export default function GamesPage({ genres, platforms }) {
+export default function GamesPage({ genres, platforms, pageState }) {
   const games = useContext(GamesContext)
 
   return (
@@ -47,25 +46,30 @@ export default function GamesPage({ genres, platforms }) {
             options={platforms}
           />
         </Space.Compact>
-        <Dropdown menu={{ items, selectable: true }}>
-          <a href='#' onClick={e => e.preventDefault()}>
-            <Space>
-              Hover me
-              <DownOutlined />
-            </Space>
-          </a>
-        </Dropdown>
+        <Select
+          placeholder='Sort by'
+          className='games-page__sort'
+          options={sortOptions}
+        />
       </section>
       <section>
-        {games ? (
+        {pageState === 'loading' ? (
+          <div className='games-page__loader'>
+            <Spin size='large' />
+          </div>
+        ) : pageState === 'loaded' ? (
           <ul className='games-page__list'>
             {games &&
               games
-                .slice(0, 29)
+                .slice(0, 30)
                 .map(game => <GameCard key={game.id} {...game} />)}
           </ul>
         ) : (
-          <p className='games-page__no-results'>Что-то пошло не так 😢</p>
+          <p className='games-page__no-results'>
+            {pageState === 'error'
+              ? 'Что-то пошло не так 😢'
+              : 'Ничего не нашлось 🧐'}
+          </p>
         )}
       </section>
     </main>
