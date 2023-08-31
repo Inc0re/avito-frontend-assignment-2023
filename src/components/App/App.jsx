@@ -51,7 +51,7 @@ const App = () => {
   // watch for filter changes and update filtered games
   useEffect(() => {
     if (!games) return
-    console.log('filter changed')
+    // console.log('filter changed')
     handleFilterChange()
   }, [selectedGenres, selectedPlatforms, selectedSort])
 
