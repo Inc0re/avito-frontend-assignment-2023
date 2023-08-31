@@ -95,7 +95,7 @@ export default function GamePage() {
                   label: 'Info',
                   children: (
                     <p>
-                      <strong>Release date:</strong>{' '}
+                      <strong>Release date:</strong>
                       {getRuDate(game.release_date)}
                       <br />
                       <strong>Publisher:</strong> {game.publisher}
@@ -109,28 +109,35 @@ export default function GamePage() {
                 {
                   key: '2',
                   label: 'System requirements',
-                  children: (
+                  children: game.minimum_system_requirements ?
+                  (
                     <p>
                       <strong>OS:</strong> {game.minimum_system_requirements.os}
                       <br />
-                      <strong>Processor:</strong>{' '}
+                      <strong>Processor:</strong>
                       {game.minimum_system_requirements.processor}
                       <br />
-                      <strong>Memory:</strong>{' '}
+                      <strong>Memory:</strong>
                       {game.minimum_system_requirements.memory}
                       <br />
-                      <strong>Graphics:</strong>{' '}
+                      <strong>Graphics:</strong>
                       {game.minimum_system_requirements.graphics}
                       <br />
-                      <strong>Storage:</strong>{' '}
+                      <strong>Storage:</strong>
                       {game.minimum_system_requirements.storage}
                     </p>
-                  ),
+                  ): (
+                    <p>Not specified</p>
+                    ),
                 },
               ]}
             />
           </section>
-          <Button className='game__back-btn' icon={<ArrowLeftOutlined />} onClick={() => navigate('/')}>
+          <Button
+            className='game__back-btn'
+            icon={<ArrowLeftOutlined />}
+            onClick={() => navigate('/')}
+          >
             Back
           </Button>
         </main>
