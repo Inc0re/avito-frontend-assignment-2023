@@ -19,7 +19,7 @@ export default function GameCard(props) {
 
   return (
     <li>
-      <Link to={'/games/' + id} className='game-card__overlay'>
+      <Link to={'/game/' + id} className='game-card__overlay'>
         <div className='game-card'>
           <img
             src={thumbnail}

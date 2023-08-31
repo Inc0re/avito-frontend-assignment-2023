@@ -123,7 +123,7 @@ const App = () => {
               />
             }
           />
-          <Route path='/game' element={<GamePage />} />
+          <Route path='/games/:id' element={<GamePage />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
         <footer className='footer'>
