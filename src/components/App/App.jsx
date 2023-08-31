@@ -84,6 +84,8 @@ const App = () => {
       }
     }
     setFilteredGames(filtered)
+    if (!filtered.length) setPageState('empty')
+    else setPageState('loaded')
   }
 
   // TODO: add filters reset button
