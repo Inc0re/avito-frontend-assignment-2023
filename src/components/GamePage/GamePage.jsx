@@ -95,40 +95,42 @@ export default function GamePage() {
                   label: 'Info',
                   children: (
                     <p>
-                      <strong>Release date:</strong>
+                      <strong>Release date: </strong>
                       {getRuDate(game.release_date)}
                       <br />
-                      <strong>Publisher:</strong> {game.publisher}
+                      <strong>Publisher: </strong>
+                      {game.publisher}
                       <br />
-                      <strong>Developer:</strong> {game.developer}
+                      <strong>Developer: </strong>
+                      {game.developer}
                       <br />
-                      <strong>Genre:</strong> {game.genre}
+                      <strong>Genre: </strong>
+                      {game.genre}
                     </p>
                   ),
                 },
                 {
                   key: '2',
                   label: 'System requirements',
-                  children: game.minimum_system_requirements ?
-                  (
+                  children: game.minimum_system_requirements ? (
                     <p>
                       <strong>OS:</strong> {game.minimum_system_requirements.os}
                       <br />
-                      <strong>Processor:</strong>
+                      <strong>Processor: </strong>
                       {game.minimum_system_requirements.processor}
                       <br />
-                      <strong>Memory:</strong>
+                      <strong>Memory: </strong>
                       {game.minimum_system_requirements.memory}
                       <br />
-                      <strong>Graphics:</strong>
+                      <strong>Graphics: </strong>
                       {game.minimum_system_requirements.graphics}
                       <br />
-                      <strong>Storage:</strong>
+                      <strong>Storage: </strong>
                       {game.minimum_system_requirements.storage}
                     </p>
-                  ): (
+                  ) : (
                     <p>Not specified</p>
-                    ),
+                  ),
                 },
               ]}
             />
