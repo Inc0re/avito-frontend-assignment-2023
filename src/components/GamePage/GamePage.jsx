@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { Carousel, Button, Image, Collapse, Spin, Alert } from 'antd'
+import { Carousel, Button, Image, Collapse, Spin } from 'antd'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import api from '../../utils/Api'
 import { getRuDate } from '../../utils/functions'
@@ -15,18 +16,47 @@ export default function GamePage() {
 
   useEffect(() => {
     // TODO: add local storage 5 min cache
+    const cachedGame = getCachedGame()
+    if (cachedGame && cachedGame.id === +id) {
+      setGame(cachedGame)
+      setPageState('loaded')
+      return
+    }
     api
       .getGame(id)
       .then(res => {
         if (res.status === 0) return navigate('/404')
         setGame(res)
         setPageState('loaded')
+        cacheGame(300, res)
       })
       .catch(err => {
         console.log(err)
         setPageState('error')
       })
   }, [])
+
+  function cacheGame(seconds, game) {
+    const now = Date.now()
+    const expiration = now + seconds * 1000
+    const item = {
+      value: game,
+      expiration,
+    }
+    localStorage.setItem('game', JSON.stringify(item))
+  }
+
+  function getCachedGame() {
+    const game = localStorage.getItem('game')
+    if (!game) return null
+    const item = JSON.parse(game)
+    const now = Date.now()
+    if (now > item.expiration) {
+      localStorage.removeItem('game')
+      return null
+    }
+    return item.value
+  }
 
   return (
     <>
