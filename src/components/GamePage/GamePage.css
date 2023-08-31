@@ -1,5 +1,6 @@
 .game {
   display: grid;
+  gap: 20px;
   width: 90%;
   margin: 0 auto;
   max-width: 1440px;
@@ -7,7 +8,7 @@
 }
 
 .game__title {
-  margin: 0;
+  margin: 20px 0 0;
   padding: 0;
 }
 
@@ -22,9 +23,17 @@
 }
 
 .game__screenshots {
-  
+  margin: 0 auto;
+  width: 700px;
+  max-width: 80vw;
 }
 
-.game__info {
+.game__back-btn {
+  justify-self: start;
+}
 
+.game__info .ant-collapse-header {
+  /* font-size: 18px; */
+  /* font-weight: 600; */
+  color: #fff !important;
 }
