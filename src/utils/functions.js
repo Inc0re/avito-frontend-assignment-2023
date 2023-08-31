@@ -19,4 +19,15 @@ function getSortedSelectOptions(arr) {
     })
 }
 
-export { getUniqueArrFromData, getSortedSelectOptions }
+function getRuDate(date) {
+  const options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  }
+  return new Date(date).toLocaleDateString('ru-RU', options)
+}
+
+console.log(getRuDate('2020-01-01'))
+
+export { getUniqueArrFromData, getSortedSelectOptions, getRuDate }
